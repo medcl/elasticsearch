@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module type="JAVA_MODULE" version="4">
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/../../plugins/analysis/icu/build/classes/main" />
-    <output-test url="file://$MODULE_DIR$/../../plugins/analysis/icu/build/classes/test" />
+    <output url="file://$MODULE_DIR$/../../plugins/analysis/icu/target/classes" />
+    <output-test url="file://$MODULE_DIR$/../../plugins/analysis/icu/target/test-classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../plugins/analysis/icu">
       <sourceFolder url="file://$MODULE_DIR$/../../plugins/analysis/icu/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../plugins/analysis/icu/src/test/java" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/../../plugins/analysis/icu/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../plugins/analysis/icu/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -27,6 +28,7 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="groovy-1.7.5" level="application" />
   </component>
 </module>
 

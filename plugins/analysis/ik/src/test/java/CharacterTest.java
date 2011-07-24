@@ -23,13 +23,11 @@
 
 import org.wltea.analyzer.help.CharacterHelper;
 
-import junit.framework.TestCase;
-
 /**
  * @author Administrator
  *
  */
-public class CharacterTest extends TestCase{
+public class CharacterTest {
 
 	public void testSBC2DBCChar(){
 		char a = '‘';

@@ -8,13 +8,12 @@ import java.io.StringReader;
 import org.apache.lucene.analysis.tokenattributes.TermAttribute;
 import org.wltea.analyzer.lucene.IKTokenizer;
 
-import junit.framework.TestCase;
 
 /**
  * @author 林良益
  *
  */
-public class IKTokenerTest extends TestCase {
+public class IKTokenerTest  {
 
 	public void testLucene3Tokenizer(){
 		String t = "IK分词器Lucene Analyzer接口实现类 民生银行";

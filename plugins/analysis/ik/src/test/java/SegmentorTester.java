@@ -2,25 +2,21 @@
  *
  */
 
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.lucene.search.Query;
 import org.wltea.analyzer.IKSegmentation;
 import org.wltea.analyzer.Lexeme;
-
 import org.wltea.analyzer.lucene.IKQueryParser;
 
-import junit.framework.TestCase;
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Administrator
  *
  */
-public class SegmentorTester extends TestCase{
+public class SegmentorTester{
 
 	public void testLetter(){
 		String t = "S43-LC10 AT&T and I.B.M Corp mail : 1.12.34.33 -1-2003%123*111-11+12 2009A17B10 10:10:23wo!r+d.1{}0.16-8AAAA_B$BB@0.1.12.34.33.10.18ok?hello001.txt";

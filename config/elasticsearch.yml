@@ -2,6 +2,10 @@
 cluster:
   name: elasticsearch_medcl
 
+thrift:
+  port: 9500
+  protocol: 'binary'
+
 # Path Settings
 #path:
 #  conf: /path/to/conf
@@ -27,33 +31,47 @@ cluster:
 #    ping.multicast.enabled: false
 #    ping.unicast.hosts: ["host1", "host2"]
 
-#for ik, use type: org.elasticsearch.index.analysis.IkAnalyzerProvider  or name: ik
-#index:
-#  analysis:
-#    analyzer:
-#      ik12:
-#          alias: [news_analyzer, news_analyzer_ik]
-#          type: custom
-#          filter: [standard, lowercase, stop, word_delimiter]
-#          tokenizer: standard
+index:
+  analysis:
+    analyzer:
 
-#        tokenizer: myTokenizer1
-#        filter: [myTokenFilter1, myTokenFilter2]
-#        char_filter: [my_html]
-#    tokenizer:
-#      myTokenizer1:
-#        type: standard
-#        max_token_length: 900
-#    filter:
-#      myTokenFilter1:
-#        type: stop
-#        stopwords: [stop1, stop2, stop3, stop4]
-#      myTokenFilter2:
-#        type: length
-#        min: 0
-#        max: 2000
-#    char_filter:
-#      my_html:
-#        type: html_strip
-#        escaped_tags: [xxx, yyy]
-#        read_ahead: 1024
+      ik:
+          alias: [news_analyzer, news_analyzer_ik,ik_analyzer]
+          type: org.elasticsearch.index.analysis.IkAnalyzerProvider
+
+      my_analyzer:
+          alias: [my_analyzer1]
+          type: custom
+          filter: [standard, lowercase, stop, word_delimiter]
+          tokenizer: standard
+
+      my_analyzer2:
+          alias: [my_analyzer3]
+          type: custom
+          filter: [lowercase, stop, word_delimiter]
+          tokenizer: whitespace
+
+      my_analyzer4:
+          type: custom
+          filter: [standard, lowercase, stop, word_delimiter]
+          tokenizer: myTokenizer1
+          filter: [myTokenFilter1, myTokenFilter2]
+          char_filter: [my_html]
+
+    tokenizer:
+      myTokenizer1:
+        type: whitespace
+        max_token_length: 900
+    filter:
+      myTokenFilter1:
+        type: stop
+        #stopwords: [xxx, stop2, stop3, stop4]
+      myTokenFilter2:
+        type: length
+        min: 0
+        max: 2000
+    char_filter:
+      my_html:
+        type: html_strip
+        #escaped_tags: [xxx, yyy]  #if not explicit set will remove all tags
+        read_ahead: 1024

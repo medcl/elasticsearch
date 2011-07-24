@@ -58,11 +58,10 @@ public class Dictionary {
 
 
 	private void loadMainDict(){
-//        ESLogger logger = Loggers.getLogger("ik-analyzer");
 		_MainDict = new DictSegment((char)0);
 
         File file= new File(environment.configFile(), Dictionary.PATH_DIC_MAIN);
-        InputStream is = null;// Dictionary.class.getResourceAsStream(Dictionary.PATH_DIC_MAIN);
+        InputStream is = null;
         try {
             is = new FileInputStream(file);
         } catch (FileNotFoundException e) {
@@ -74,7 +73,7 @@ public class Dictionary {
         logger.info("开始加载词典：{}",file.toString());
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
-			String theWord = null;
+			String theWord;
 			do {
 				theWord = br.readLine();
 				if (theWord != null && !"".equals(theWord.trim())) {
@@ -104,7 +103,7 @@ public class Dictionary {
 
                 File tempFile=new File(environment.configFile(),extDictName);
                 try {
-                    is = new FileInputStream(tempFile);//Dictionary.class.getResourceAsStream(extDictName);
+                    is = new FileInputStream(tempFile);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -115,7 +114,7 @@ public class Dictionary {
 				try {
                     logger.info("开始加载词典：{}",tempFile.toString());
 					BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
-					String theWord = null;
+					String theWord;
 					do {
 						theWord = br.readLine();
 						if (theWord != null && !"".equals(theWord.trim())) {
@@ -148,7 +147,7 @@ public class Dictionary {
 
 		_SurnameDict = new DictSegment((char)0);
         File file=new File(environment.configFile(),Dictionary.PATH_DIC_SURNAME);
-        InputStream is = null;//Dictionary.class.getResourceAsStream(Dictionary.PATH_DIC_SURNAME);
+        InputStream is = null;
         try {
             is = new FileInputStream(file);
         } catch (FileNotFoundException e) {
@@ -160,7 +159,7 @@ public class Dictionary {
 		try {
             logger.info("开始加载词典：{}",file.toString());
 			BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
-			String theWord = null;
+			String theWord;
 			do {
 				theWord = br.readLine();
 				if (theWord != null && !"".equals(theWord.trim())) {
@@ -189,7 +188,7 @@ public class Dictionary {
 
 		_QuantifierDict = new DictSegment((char)0);
         File file=new File(environment.configFile(),Dictionary.PATH_DIC_QUANTIFIER);
-        InputStream is = null;//Dictionary.class.getResourceAsStream(Dictionary.PATH_DIC_QUANTIFIER);
+        InputStream is = null;
         try {
             is = new FileInputStream(file);
         } catch (FileNotFoundException e) {
@@ -201,7 +200,7 @@ public class Dictionary {
 		try {
             logger.info("开始加载词典：{}",file.toString());
 			BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
-			String theWord = null;
+			String theWord;
 			do {
 				theWord = br.readLine();
 				if (theWord != null && !"".equals(theWord.trim())) {
@@ -230,7 +229,7 @@ public class Dictionary {
 
 		_SuffixDict = new DictSegment((char)0);
         File file=new File(environment.configFile(),Dictionary.PATH_DIC_SUFFIX);
-        InputStream is = null;//Dictionary.class.getResourceAsStream(Dictionary.PATH_DIC_SUFFIX);
+        InputStream is = null;
         try {
             is = new FileInputStream(file);
         } catch (FileNotFoundException e) {
@@ -242,7 +241,7 @@ public class Dictionary {
 		try {
             logger.info("开始加载词典：{}",file.toString());
 			BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
-			String theWord = null;
+			String theWord;
 			do {
 				theWord = br.readLine();
 				if (theWord != null && !"".equals(theWord.trim())) {
@@ -271,7 +270,7 @@ public class Dictionary {
 
 		_PrepDict = new DictSegment((char)0);
         File file=new File(environment.configFile(),Dictionary.PATH_DIC_PREP);
-        InputStream is = null;//Dictionary.class.getResourceAsStream(Dictionary.PATH_DIC_PREP);
+        InputStream is = null;
         try {
             is = new FileInputStream(file);
         } catch (FileNotFoundException e) {
@@ -283,7 +282,7 @@ public class Dictionary {
 		try {
 			logger.info("开始加载词典：{}",file.toString());
             BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
-			String theWord = null;
+			String theWord;
 			do {
 				theWord = br.readLine();
 				if (theWord != null && !"".equals(theWord.trim())) {
@@ -313,7 +312,7 @@ public class Dictionary {
 
 		_StopWords = new DictSegment((char)0);
         File file=new File(environment.configFile(),Dictionary.PATH_DIC_STOP);
-        InputStream is = null;//Dictionary.class.getResourceAsStream(Dictionary.PATH_DIC_STOP);
+        InputStream is = null;
         try {
             is = new FileInputStream(file);
         } catch (FileNotFoundException e) {
@@ -325,7 +324,7 @@ public class Dictionary {
 		try {
 			logger.info("开始加载词典：{}",file.toString());
             BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
-			String theWord = null;
+			String theWord;
 			do {
 				theWord = br.readLine();
 				if (theWord != null && !"".equals(theWord.trim())) {
@@ -354,7 +353,7 @@ public class Dictionary {
 			for(String extStopWordDictName : extStopWordDictFiles){
                 File tempFile=new File(environment.configFile(),extStopWordDictName);
                 try {
-                    is = new FileInputStream(tempFile);//Dictionary.class.getResourceAsStream(extStopWordDictName);
+                    is = new FileInputStream(tempFile);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -365,7 +364,7 @@ public class Dictionary {
 				try {
 					logger.info("开始加载词典：{}",tempFile.toString());
                     BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
-					String theWord = null;
+					String theWord;
 					do {
 						theWord = br.readLine();
 						if (theWord != null && !"".equals(theWord.trim())) {

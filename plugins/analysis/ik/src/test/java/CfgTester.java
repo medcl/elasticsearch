@@ -23,13 +23,11 @@
 
 import org.wltea.analyzer.cfg.Configuration;
 
-import junit.framework.TestCase;
-
 /**
  * @author Administrator
  *
  */
-public class CfgTester extends TestCase{
+public class CfgTester{
 	
 	public void testCfgLoading(){
 		System.out.println(Configuration.getExtDictionarys().size());

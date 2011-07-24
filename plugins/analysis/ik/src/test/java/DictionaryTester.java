@@ -2,13 +2,15 @@
  * 
  */
 
-import java.io.BufferedReader;
+import org.wltea.analyzer.dic.DictSegment;
+import org.wltea.analyzer.dic.Dictionary;
+import org.wltea.analyzer.dic.Hit;
 
+import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -17,18 +19,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.wltea.analyzer.dic.DictSegment;
-import org.wltea.analyzer.dic.Dictionary;
-import org.wltea.analyzer.dic.Hit;
-
-import junit.framework.TestCase;
-
 /**
  * 主词典统计分析工具类
  * @author 林良益
  * 
  */
-public class DictionaryTester extends TestCase {
+public class DictionaryTester {
 	
 	public void testMainDicEncoding(){
 		int count = 0;
@@ -393,7 +389,7 @@ public class DictionaryTester extends TestCase {
 		TreeSet<String> allWords = new TreeSet<String>();
 	        
 		try {
-			String theWord = null;
+			String theWord;
 			BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
 			do {
 				theWord = br.readLine();

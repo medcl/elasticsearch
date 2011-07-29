@@ -57,7 +57,11 @@ index:
           tokenizer: myTokenizer1
           filter: [myTokenFilter1, myTokenFilter2]
           char_filter: [my_html]
-
+      default:
+          type: custom
+          filter: [lowercase]
+          tokenizer: keyword     
+          
     tokenizer:
       myTokenizer1:
         type: whitespace
@@ -75,3 +79,4 @@ index:
         type: html_strip
         #escaped_tags: [xxx, yyy]  #if not explicit set will remove all tags
         read_ahead: 1024
+#index.analysis.analyzer.default.type : "ik"

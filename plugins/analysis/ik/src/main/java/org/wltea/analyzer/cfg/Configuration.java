@@ -24,30 +24,20 @@ import org.wltea.analyzer.seg.QuantifierSegmenter;
 
 public class Configuration {
 
-    private static ThreadLocal<String> FILE_NAME = new ThreadLocal<String>() {
-        @Override
-        protected String initialValue() {
-            return "ik/IkAnalyzer.cfg.xml";
-        }
-    };
+	private static String FILE_NAME = "ik/IkAnalyzer.cfg.xml";
 	private static final String EXT_DICT = "ext_dict";
 	private static final String EXT_STOP = "ext_stopwords";
 	private static final Configuration CFG = new Configuration();
-    private static ThreadLocal<ESLogger> logger = new ThreadLocal<ESLogger>() {
-        @Override
-        protected ESLogger initialValue() {
-            return null;
-        }
-    };
+    private static ESLogger logger = null;
 	private Properties props;
 
 	private Configuration(){
 
-        logger.set(Loggers.getLogger("ik-analyzer"));
+        logger = Loggers.getLogger("ik-analyzer");
 		props = new Properties();
         Environment environment=new Environment();
-        File fileConfig= new File(environment.configFile(), FILE_NAME.get());
-        InputStream input = null;
+        File fileConfig= new File(environment.configFile(), FILE_NAME);
+        InputStream input = null;// Configuration.class.getResourceAsStream(FILE_NAME);
         try {
             input = new FileInputStream(fileConfig);
         } catch (FileNotFoundException e) {
@@ -56,7 +46,7 @@ public class Configuration {
         if(input != null){
 			try {
 				props.loadFromXML(input);
-                logger.get().info("成功加载扩展配置文件:{}", FILE_NAME.get());
+                logger.info("成功加载扩展配置文件:{}",FILE_NAME);
 			} catch (InvalidPropertiesFormatException e) {
 				e.printStackTrace();
 			} catch (IOException e) {

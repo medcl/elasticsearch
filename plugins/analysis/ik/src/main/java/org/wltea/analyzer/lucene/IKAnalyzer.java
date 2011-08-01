@@ -7,6 +7,8 @@ import java.io.Reader;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
+import org.elasticsearch.common.settings.Settings;
+import org.wltea.analyzer.dic.Dictionary;
 
 public final class IKAnalyzer extends Analyzer {
 	
@@ -22,8 +24,12 @@ public final class IKAnalyzer extends Analyzer {
 		this.setMaxWordLength(isMaxWordLength);
 	}
 
+    public IKAnalyzer(Settings settings) {
+       Dictionary.getInstance().Init(settings);
+    }
 
-	@Override
+
+    @Override
 	public TokenStream tokenStream(String fieldName, Reader reader) {
 		return new IKTokenizer(reader , isMaxWordLength());
 	}

@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.elasticsearch.common.logging.ESLogger;
 import org.elasticsearch.common.logging.Loggers;
+import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.env.Environment;
 import org.wltea.analyzer.cfg.Configuration;
 
@@ -44,18 +45,23 @@ public class Dictionary {
 
 	private DictSegment _StopWords;
 
-    private Environment environment=new Environment();
+    private Environment environment;
+    private Configuration configuration;
     private ESLogger logger=null;
 	private Dictionary(){
         logger = Loggers.getLogger("ik-analyzer");
-		loadMainDict();
-		loadSurnameDict();
-		loadQuantifierDict();
-		loadSuffixDict();
-		loadPrepDict();
-		loadStopWordDict();
 	}
 
+    public void Init(Settings settings){
+            environment =new Environment(settings);
+            configuration=new Configuration(settings);
+            loadMainDict();
+            loadSurnameDict();
+            loadQuantifierDict();
+            loadSuffixDict();
+            loadPrepDict();
+            loadStopWordDict();
+    }
 
 	private void loadMainDict(){
 		_MainDict = new DictSegment((char)0);
@@ -70,7 +76,7 @@ public class Dictionary {
         if(is == null){
         	throw new RuntimeException("Main Dictionary not found!!!");
         }
-        logger.info("开始加载词典：{}",file.toString());
+        logger.info("Begin Loading Dict：{}",file.toString());
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
 			String theWord;
@@ -80,7 +86,7 @@ public class Dictionary {
 					_MainDict.fillSegment(theWord.trim().toCharArray());
 				}
 			} while (theWord != null);
-         logger.info("成功加载词典：{},MainDict字典大小:{}",file.toString(),_MainDict.getDicNum());
+         logger.info("Dict Loading Finished：{},MainDict Size:{}",file.toString(),_MainDict.getDicNum());
 		} catch (IOException ioe) {
 			System.err.println("Main Dictionary loading exception.");
 			ioe.printStackTrace();
@@ -97,7 +103,7 @@ public class Dictionary {
 		}
 
 
-		List<String> extDictFiles  = Configuration.getExtDictionarys();
+		List<String> extDictFiles  = configuration.getExtDictionarys();
 		if(extDictFiles != null){
 			for(String extDictName : extDictFiles){
 
@@ -112,7 +118,7 @@ public class Dictionary {
 					continue;
 				}
 				try {
-                    logger.info("开始加载词典：{}",tempFile.toString());
+                    logger.info("Begin Loading Dict：{}",tempFile.toString());
 					BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
 					String theWord;
 					do {
@@ -123,7 +129,7 @@ public class Dictionary {
 							_MainDict.fillSegment(theWord.trim().toCharArray());
 						}
 					} while (theWord != null);
-                 logger.info("成功加载词典：{},MainDict字典大小:{}",file.toString(),_MainDict.getDicNum());
+                 logger.info("Dict Loading Finished：{},MainDict Size:{}",file.toString(),_MainDict.getDicNum());
 				} catch (IOException ioe) {
 					System.err.println("Extension Dictionary loading exception.");
 					ioe.printStackTrace();
@@ -157,7 +163,7 @@ public class Dictionary {
         	throw new RuntimeException("Surname Dictionary not found!!!");
         }
 		try {
-            logger.info("开始加载词典：{}",file.toString());
+            logger.info("Begin Loading Dict：{}",file.toString());
 			BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
 			String theWord;
 			do {
@@ -166,7 +172,7 @@ public class Dictionary {
 					_SurnameDict.fillSegment(theWord.trim().toCharArray());
 				}
 			} while (theWord != null);
-         logger.info("成功加载词典：{},SurnameDict字典大小:{}",file.toString(),_SurnameDict.getDicNum());
+         logger.info("Dict Loading Finished：{},SurnameDict Size:{}",file.toString(),_SurnameDict.getDicNum());
 		} catch (IOException ioe) {
 			System.err.println("Surname Dictionary loading exception.");
 			ioe.printStackTrace();
@@ -198,7 +204,7 @@ public class Dictionary {
         	throw new RuntimeException("Quantifier Dictionary not found!!!");
         }
 		try {
-            logger.info("开始加载词典：{}",file.toString());
+            logger.info("Begin Loading Dict：{}",file.toString());
 			BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
 			String theWord;
 			do {
@@ -207,7 +213,7 @@ public class Dictionary {
 					_QuantifierDict.fillSegment(theWord.trim().toCharArray());
 				}
 			} while (theWord != null);
-        logger.info("成功加载词典：{},QuantifierDict字典大小:{}",file.toString(),_QuantifierDict.getDicNum());
+        logger.info("Dict Loading Finished：{},QuantifierDict Size:{}",file.toString(),_QuantifierDict.getDicNum());
 		} catch (IOException ioe) {
 			System.err.println("Quantifier Dictionary loading exception.");
 			ioe.printStackTrace();
@@ -239,7 +245,7 @@ public class Dictionary {
         	throw new RuntimeException("Suffix Dictionary not found!!!");
         }
 		try {
-            logger.info("开始加载词典：{}",file.toString());
+            logger.info("Begin Loading Dict：{}",file.toString());
 			BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
 			String theWord;
 			do {
@@ -248,7 +254,7 @@ public class Dictionary {
 					_SuffixDict.fillSegment(theWord.trim().toCharArray());
 				}
 			} while (theWord != null);
-            logger.info("成功加载词典：{},SuffixDict字典大小:{}",file.toString(),_SuffixDict.getDicNum());
+            logger.info("Dict Loading Finished：{},SuffixDict Size:{}",file.toString(),_SuffixDict.getDicNum());
 		} catch (IOException ioe) {
 			System.err.println("Suffix Dictionary loading exception.");
 			ioe.printStackTrace();
@@ -280,7 +286,7 @@ public class Dictionary {
         	throw new RuntimeException("Preposition Dictionary not found!!!");
         }
 		try {
-			logger.info("开始加载词典：{}",file.toString());
+			logger.info("Begin Loading Dict：{}",file.toString());
             BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
 			String theWord;
 			do {
@@ -290,7 +296,7 @@ public class Dictionary {
 					_PrepDict.fillSegment(theWord.trim().toCharArray());
 				}
 			} while (theWord != null);
-            logger.info("成功加载词典：{},PrepDict字典大小:{}",file.toString(),_PrepDict.getDicNum());
+            logger.info("Dict Loading Finished：{},PrepDict Size:{}",file.toString(),_PrepDict.getDicNum());
 		} catch (IOException ioe) {
 			System.err.println("Preposition Dictionary loading exception.");
 			ioe.printStackTrace();
@@ -322,7 +328,7 @@ public class Dictionary {
         	throw new RuntimeException("Stopword Dictionary not found!!!");
         }
 		try {
-			logger.info("开始加载词典：{}",file.toString());
+			logger.info("Begin Loading Dict：{}",file.toString());
             BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
 			String theWord;
 			do {
@@ -331,7 +337,7 @@ public class Dictionary {
 					_StopWords.fillSegment(theWord.trim().toCharArray());
 				}
 			} while (theWord != null);
-            logger.info("成功加载词典：{},Stopwords字典大小:{}",file.toString(),_StopWords.getDicNum());
+            logger.info("Dict Loading Finished：{},Stopwords Size:{}",file.toString(),_StopWords.getDicNum());
 		} catch (IOException ioe) {
 			System.err.println("Stopword Dictionary loading exception.");
 			ioe.printStackTrace();
@@ -348,7 +354,7 @@ public class Dictionary {
 		}
 
 
-		List<String> extStopWordDictFiles  = Configuration.getExtStopWordDictionarys();
+		List<String> extStopWordDictFiles  = configuration.getExtStopWordDictionarys();
 		if(extStopWordDictFiles != null){
 			for(String extStopWordDictName : extStopWordDictFiles){
                 File tempFile=new File(environment.configFile(),extStopWordDictName);
@@ -362,7 +368,7 @@ public class Dictionary {
 					continue;
 				}
 				try {
-					logger.info("开始加载词典：{}",tempFile.toString());
+					logger.info("Begin Loading Dict：{}",tempFile.toString());
                     BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
 					String theWord;
 					do {
@@ -373,7 +379,7 @@ public class Dictionary {
 							_StopWords.fillSegment(theWord.trim().toCharArray());
 						}
 					} while (theWord != null);
-                    logger.info("成功加载词典：{},Stopwords字典大小:{}",tempFile.toString(),_StopWords.getDicNum());
+                    logger.info("Dict Loading Finished：{},Stopwords Size:{}",tempFile.toString(),_StopWords.getDicNum());
 				} catch (IOException ioe) {
 					System.err.println("Extension Stop word Dictionary loading exception.");
 					ioe.printStackTrace();

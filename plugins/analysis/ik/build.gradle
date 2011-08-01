@@ -28,11 +28,6 @@ configurations {
 dependencies {
     compile project(':elasticsearch')
 
-    compile(':commons-logging:1.1.1') { transitive = false }
-    distLib(':commons-logging:1.1.1') { transitive = false }
-    compile(':junit:4.8.1') { transitive = false }
-    distLib(':junit:4.8.1') { transitive = false }
-
     testCompile project(':test-testng')
     testCompile('org.testng:testng:5.10:jdk15') { transitive = false }
     testCompile 'org.hamcrest:hamcrest-all:1.1'

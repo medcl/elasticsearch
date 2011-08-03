@@ -1,0 +1,87 @@
+#env single node, with thrift transport
+
+--ik--perf--
+
+bulksize:100
+Single Thread.
+time:00:00:41.8077790,files:12546,avg_time(ms):3.33235923800415
+bytes/s:928420.234904131,kB/s:928.415738133327
+
+bulksize:1000
+Single Thread.
+time:00:01:01.3793021,files:12546,avg_time(ms):4.89234035549179
+bytes/s:632382.361349788,kB/s:632.379298428028
+
+bulksize:10
+Single Thread.
+time:00:00:45.6404008,files:12546,avg_time(ms):3.63784479515383
+bytes/s:850456.773376977,kB/s:850.452654219461
+
+bulksize:50
+Single Thread.
+time:00:00:44.6591492,files:12546,avg_time(ms):3.55963248844253
+bytes/s:869143.024336881,kB/s:869.138814673165
+
+bulksize:200
+Single Thread.
+time:00:00:40.7405263,files:12546,avg_time(ms):3.2472920691854
+bytes/s:952741.447525188,kB/s:952.736832955445
+
+nobulk
+Single Thread.
+time:00:01:11.2670763,files:12546,avg_time(ms):5.68046200382592
+bytes/s:544644.035018453,kB/s:544.641397054196
+
+
+
+--mmseg--perf--
+
+bulksize:100
+Single Thread.
+time:00:00:31.8008189,files:12546,avg_time(ms):2.53473767734736
+bytes/s:1220571.96457919,kB/s:1220.56605278174
+
+bulksize:1000
+Single Thread.
+time:00:00:28.3382200,files:12546,avg_time(ms):2.25874541686593
+bytes/s:1369711.57680334,kB/s:1369.70494265342
+
+bulksize:1500
+Single Thread.
+time:00:00:37.6781550,files:12546,avg_time(ms):3.0032006217121
+bytes/s:1030177.51267279,kB/s:1030.17252304419
+
+bulksize:10
+Single Thread.
+time:00:00:44.4707198,files:12546,avg_time(ms):3.54461340666348
+bytes/s:872825.719362429,kB/s:872.821491861708
+
+bulksize:50
+Single Thread.
+time:00:00:35.4990304,files:12546,avg_time(ms):2.82950983580424
+bytes/s:1093415.44156654,kB/s:1093.41014564725
+
+bulksize:200
+Single Thread.
+time:00:00:35.3190190,files:12546,avg_time(ms):2.81516172485254
+bytes/s:1098988.28163942,kB/s:1098.98295872827
+
+bulksize:200
+Single Thread.
+time:00:00:28.8766517,files:12546,avg_time(ms):2.30166201976726
+bytes/s:1344172.04609633,kB/s:1344.16553564623
+
+bulksize:200
+Single Thread.
+time:00:00:34.0679485,files:12546,avg_time(ms):2.71544304957755
+bytes/s:1139346.20982534,kB/s:1139.34069144199
+
+nobulk
+Single Thread.
+time:00:01:15.4203138,files:12546,avg_time(ms):6.01150277379244
+bytes/s:514651.637527395,kB/s:514.649144830262
+
+nobulk
+Single Thread.
+time:00:01:06.4388000,files:12546,avg_time(ms):5.29561613263192
+bytes/s:584224.700024684,kB/s:584.221870352866

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/../../plugins/analysis/mmseg/build" />
+    <output-test url="file://$MODULE_DIR$/../../out/test/plugin-analysis-mmseg/build" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../plugins/analysis/mmseg">
-      <sourceFolder url="file://$MODULE_DIR$/../../plugins/analysis/mmseg/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../plugins/analysis/mmseg/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../plugins/analysis/mmseg/src/test/mmseg" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/../../plugins/analysis/mmseg/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

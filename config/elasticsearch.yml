@@ -36,8 +36,11 @@ index:
     analyzer:
 
       ik:
-          alias: [news_analyzer, news_analyzer_ik,ik_analyzer]
+          alias: [news_analyzer_ik,ik_analyzer]
           type: org.elasticsearch.index.analysis.IkAnalyzerProvider
+      mmseg:
+          alias: [news_analyzer, mmseg_analyzer]
+          type: org.elasticsearch.index.analysis.MMsegAnalyzerProvider
 
       my_analyzer:
           alias: [my_analyzer1]

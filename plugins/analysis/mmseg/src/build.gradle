@@ -3,11 +3,11 @@ dependsOn(':elasticsearch')
 apply plugin: 'java'
 apply plugin: 'maven'
 
-archivesBaseName = "elasticsearch-analysis-ik"
+archivesBaseName = "elasticsearch-analysis-mmseg"
 
 explodedDistDir = new File(distsDir, 'exploded')
 
-manifest.mainAttributes("Implementation-Title": "ElasticSearch::Plugins::Analysis::ik", "Implementation-Version": rootProject.version, "Implementation-Date": buildTimeStr)
+manifest.mainAttributes("Implementation-Title": "ElasticSearch::Plugins::Analysis::mmseg", "Implementation-Version": rootProject.version, "Implementation-Date": buildTimeStr)
 
 configurations.compile.transitive = true
 configurations.testCompile.transitive = true
@@ -109,8 +109,8 @@ uploadArchives {
 
         pom.project {
             inceptionYear '2009'
-            name 'elasticsearch-plugins-analysis-ik'
-            description 'IK Analysis Plugin for ElasticSearch'
+            name 'elasticsearch-plugins-analysis-mmseg'
+            description 'MMseg Analysis Plugin for ElasticSearch'
             licenses {
                 license {
                     name 'The Beisen Software'

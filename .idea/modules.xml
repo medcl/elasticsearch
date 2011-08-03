@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/elasticsearch-root.iml" filepath="$PROJECT_DIR$/.idea/modules/elasticsearch-root.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/plugin-analysis-icu.iml" filepath="$PROJECT_DIR$/.idea/modules/plugin-analysis-icu.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/plugin-analysis-ik.iml" filepath="$PROJECT_DIR$/.idea/modules/plugin-analysis-ik.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/plugin-analysis-mmseg.iml" filepath="$PROJECT_DIR$/.idea/modules/plugin-analysis-mmseg.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/plugin-cloud-aws.iml" filepath="$PROJECT_DIR$/.idea/modules/plugin-cloud-aws.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/plugin-lang-groovy.iml" filepath="$PROJECT_DIR$/.idea/modules/plugin-lang-groovy.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/plugin-lang-javascript.iml" filepath="$PROJECT_DIR$/.idea/modules/plugin-lang-javascript.iml" />

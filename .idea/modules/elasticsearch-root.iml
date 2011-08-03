@@ -31,6 +31,7 @@
     <orderEntry type="module" module-name="plugin-river-wikipedia" />
     <orderEntry type="module" module-name="test-integration" />
     <orderEntry type="module" module-name="plugin-analysis-ik" />
+    <orderEntry type="module" module-name="plugin-analysis-mmseg" />
   </component>
 </module>
 

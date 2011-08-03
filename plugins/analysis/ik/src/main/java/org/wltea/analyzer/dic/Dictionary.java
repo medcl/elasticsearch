@@ -48,19 +48,26 @@ public class Dictionary {
     private Environment environment;
     private Configuration configuration;
     private ESLogger logger=null;
+    private static boolean dictInited=false;
 	private Dictionary(){
         logger = Loggers.getLogger("ik-analyzer");
 	}
 
+
+
     public void Init(Settings settings){
-            environment =new Environment(settings);
-            configuration=new Configuration(settings);
-            loadMainDict();
-            loadSurnameDict();
-            loadQuantifierDict();
-            loadSuffixDict();
-            loadPrepDict();
-            loadStopWordDict();
+
+            if(!dictInited){
+                environment =new Environment(settings);
+                configuration=new Configuration(settings);
+                loadMainDict();
+                loadSurnameDict();
+                loadQuantifierDict();
+                loadSuffixDict();
+                loadPrepDict();
+                loadStopWordDict();
+                dictInited=true;
+            }
     }
 
 	private void loadMainDict(){
@@ -76,7 +83,7 @@ public class Dictionary {
         if(is == null){
         	throw new RuntimeException("Main Dictionary not found!!!");
         }
-        logger.info("Begin Loading Dict：{}",file.toString());
+
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
 			String theWord;
@@ -86,7 +93,7 @@ public class Dictionary {
 					_MainDict.fillSegment(theWord.trim().toCharArray());
 				}
 			} while (theWord != null);
-         logger.info("Dict Loading Finished：{},MainDict Size:{}",file.toString(),_MainDict.getDicNum());
+         logger.info("[Dict Loading] {},MainDict Size:{}",file.toString(),_MainDict.getDicNum());
 		} catch (IOException ioe) {
 			System.err.println("Main Dictionary loading exception.");
 			ioe.printStackTrace();
@@ -118,7 +125,7 @@ public class Dictionary {
 					continue;
 				}
 				try {
-                    logger.info("Begin Loading Dict：{}",tempFile.toString());
+
 					BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
 					String theWord;
 					do {
@@ -129,7 +136,7 @@ public class Dictionary {
 							_MainDict.fillSegment(theWord.trim().toCharArray());
 						}
 					} while (theWord != null);
-                 logger.info("Dict Loading Finished：{},MainDict Size:{}",file.toString(),_MainDict.getDicNum());
+                 logger.info("[Dict Loading] {},MainDict Size:{}",file.toString(),_MainDict.getDicNum());
 				} catch (IOException ioe) {
 					System.err.println("Extension Dictionary loading exception.");
 					ioe.printStackTrace();
@@ -163,7 +170,6 @@ public class Dictionary {
         	throw new RuntimeException("Surname Dictionary not found!!!");
         }
 		try {
-            logger.info("Begin Loading Dict：{}",file.toString());
 			BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
 			String theWord;
 			do {
@@ -172,7 +178,7 @@ public class Dictionary {
 					_SurnameDict.fillSegment(theWord.trim().toCharArray());
 				}
 			} while (theWord != null);
-         logger.info("Dict Loading Finished：{},SurnameDict Size:{}",file.toString(),_SurnameDict.getDicNum());
+         logger.info("[Dict Loading] {},SurnameDict Size:{}",file.toString(),_SurnameDict.getDicNum());
 		} catch (IOException ioe) {
 			System.err.println("Surname Dictionary loading exception.");
 			ioe.printStackTrace();
@@ -204,7 +210,6 @@ public class Dictionary {
         	throw new RuntimeException("Quantifier Dictionary not found!!!");
         }
 		try {
-            logger.info("Begin Loading Dict：{}",file.toString());
 			BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
 			String theWord;
 			do {
@@ -213,7 +218,7 @@ public class Dictionary {
 					_QuantifierDict.fillSegment(theWord.trim().toCharArray());
 				}
 			} while (theWord != null);
-        logger.info("Dict Loading Finished：{},QuantifierDict Size:{}",file.toString(),_QuantifierDict.getDicNum());
+        logger.info("[Dict Loading] {},QuantifierDict Size:{}",file.toString(),_QuantifierDict.getDicNum());
 		} catch (IOException ioe) {
 			System.err.println("Quantifier Dictionary loading exception.");
 			ioe.printStackTrace();
@@ -245,7 +250,7 @@ public class Dictionary {
         	throw new RuntimeException("Suffix Dictionary not found!!!");
         }
 		try {
-            logger.info("Begin Loading Dict：{}",file.toString());
+
 			BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
 			String theWord;
 			do {
@@ -254,7 +259,7 @@ public class Dictionary {
 					_SuffixDict.fillSegment(theWord.trim().toCharArray());
 				}
 			} while (theWord != null);
-            logger.info("Dict Loading Finished：{},SuffixDict Size:{}",file.toString(),_SuffixDict.getDicNum());
+            logger.info("[Dict Loading] {},SuffixDict Size:{}",file.toString(),_SuffixDict.getDicNum());
 		} catch (IOException ioe) {
 			System.err.println("Suffix Dictionary loading exception.");
 			ioe.printStackTrace();
@@ -286,7 +291,7 @@ public class Dictionary {
         	throw new RuntimeException("Preposition Dictionary not found!!!");
         }
 		try {
-			logger.info("Begin Loading Dict：{}",file.toString());
+
             BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
 			String theWord;
 			do {
@@ -296,7 +301,7 @@ public class Dictionary {
 					_PrepDict.fillSegment(theWord.trim().toCharArray());
 				}
 			} while (theWord != null);
-            logger.info("Dict Loading Finished：{},PrepDict Size:{}",file.toString(),_PrepDict.getDicNum());
+            logger.info("[Dict Loading] {},PrepDict Size:{}",file.toString(),_PrepDict.getDicNum());
 		} catch (IOException ioe) {
 			System.err.println("Preposition Dictionary loading exception.");
 			ioe.printStackTrace();
@@ -328,7 +333,7 @@ public class Dictionary {
         	throw new RuntimeException("Stopword Dictionary not found!!!");
         }
 		try {
-			logger.info("Begin Loading Dict：{}",file.toString());
+
             BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
 			String theWord;
 			do {
@@ -337,7 +342,7 @@ public class Dictionary {
 					_StopWords.fillSegment(theWord.trim().toCharArray());
 				}
 			} while (theWord != null);
-            logger.info("Dict Loading Finished：{},Stopwords Size:{}",file.toString(),_StopWords.getDicNum());
+            logger.info("[Dict Loading] {},Stopwords Size:{}",file.toString(),_StopWords.getDicNum());
 		} catch (IOException ioe) {
 			System.err.println("Stopword Dictionary loading exception.");
 			ioe.printStackTrace();
@@ -368,7 +373,7 @@ public class Dictionary {
 					continue;
 				}
 				try {
-					logger.info("Begin Loading Dict：{}",tempFile.toString());
+
                     BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
 					String theWord;
 					do {
@@ -379,7 +384,7 @@ public class Dictionary {
 							_StopWords.fillSegment(theWord.trim().toCharArray());
 						}
 					} while (theWord != null);
-                    logger.info("Dict Loading Finished：{},Stopwords Size:{}",tempFile.toString(),_StopWords.getDicNum());
+                    logger.info("[Dict Loading] {},Stopwords Size:{}",tempFile.toString(),_StopWords.getDicNum());
 				} catch (IOException ioe) {
 					System.err.println("Extension Stop word Dictionary loading exception.");
 					ioe.printStackTrace();

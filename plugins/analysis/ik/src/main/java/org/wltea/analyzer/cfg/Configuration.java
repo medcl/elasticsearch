@@ -48,7 +48,7 @@ public class Configuration {
         if(input != null){
 			try {
 				props.loadFromXML(input);
-                logger.info("成功加载扩展配置文件:{}",FILE_NAME);
+                logger.info("[Dict Loading] {}",FILE_NAME);
 			} catch (InvalidPropertiesFormatException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
